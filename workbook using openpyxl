@@ -1,0 +1,39 @@
+from openpyxl import *
+from openpyxl.styles import *
+#***** create a new workbook*************
+wb = Workbook()
+ws = wb.active
+ws.title='Work'
+#****** Enter data **********************
+
+data =[
+['ID','Name','Age'],
+[ '1001','Joe','28'],
+['1002','Samy','29'],
+['1003','Maria','30'],
+['1004','Mark','28']
+]
+for i in data:
+    ws.append(i)
+print(data[0])
+#*******************SHEET SALARY******************
+ws =wb.create_sheet('Salary')
+data2=[
+['ID','Name','Salary'],
+[ '1001','Joe',3000 ],
+['1002','Samy',2500],
+['1003','Maria',3200],
+['1004','Mark',2500]]
+for j in data2 :
+    ws.append(j)
+#***************Font color***********************************************
+fnt=Font(bold=True,italic=True,size=12,color="00FF0000" )
+for i in ws["A1:C1"]:
+    for k in i :
+        k.font=fnt
+#********************fill solid color*************************************
+yellow= PatternFill(fill_type='solid', start_color="00FFFF99", end_color="00FFFF99")
+for i in ws["A1:C1"]:
+    for m in i:
+        m.fill=yellow
+wb.save('Work.xlsx')
